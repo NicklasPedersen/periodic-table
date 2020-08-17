@@ -1,3 +1,4 @@
+// "Dictionary" to replace entries, this is to convert from the api's weird format
 let nobleGasses = {
     "[He]": "1s2",
     "[Ne]": "1s2 2s2 2p6",
@@ -6,7 +7,7 @@ let nobleGasses = {
     "[Xe]": "1s2 2s2 2p6 3s2 3p6 3d10 4s2 4p6 4d10 5s2 5p6",
     "[Rn]": "1s2 2s2 2p6 3s2 3p6 3d10 4s2 4p6 4d10 5s2 5p6 4f14 5d10 6s2 6p6",
 };
-// function to convert electron notation from <shell><primary/secondary shell><number of electrons> to <number of electrons in this shell>
+// function to convert electron notation from <shell><shell-type><number of electrons> to <number of electrons in this shell>
 function reformatElectrons(atom: Atom) {
     let noble = atom.electronicConfiguration.split(" ")[0];
     if (nobleGasses.hasOwnProperty(noble)) {
@@ -24,19 +25,16 @@ function reformatElectrons(atom: Atom) {
     atom.electronicConfiguration = shells.join(" ");
 }
 
-function reformatGroup(atom: Atom) {
-    atom.groupBlock = atom.groupBlock.split(" ")[0];
-}
-
 export function reformat(atom: Atom) {
     reformatElectrons(atom);
-    reformatGroup(atom);
+    // take just the first word of the group
+    atom.groupBlock = atom.groupBlock.split(" ")[0];
+
     // The api returns empty string for synthetic elements
     if (!atom.standardState) {
         atom.standardState = "synthetic";
     }
 }
-
 
 export class Atom {
     atomicNumber: number;

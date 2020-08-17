@@ -12,14 +12,11 @@ export class TableComponent implements OnInit {
   @Input() lanthanoids: Atom[];
   @Input() actinoids: Atom[];
   constructor(private dataService: DataService) { }
-  initData(res) {
-    this.atoms = res.slice;
-    this.actinoids = this.atoms.splice(88, 15);
-    this.lanthanoids = this.atoms.splice(56, 15);
-  }
   ngOnInit() {
       this.dataService.refreshData((res: Atom[]) => {
+      // destructuring operator, it just clones the whole array
       this.atoms = [...res];
+      // take out the actinoids and lanthanoids from the array
       this.actinoids = this.atoms.splice(88, 15);
       this.lanthanoids = this.atoms.splice(56, 15);
     });
