@@ -1,0 +1,19 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(17, 80px) auto;
+}
+.element-2 {
+    grid-column-start: -2;
+}
+.element-5,
+.element-13 {
+    grid-column-start: 13;
+}
+
+.element-72,
+.element-104 {
+    grid-column-start: 4;
+}
+.actinoid {
+    grid-row-start: 10;
+}

@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <app-atom *ngFor="let atom of atoms" [ngClass]="'element-' + (atom.atomicNumber)" [atom]="atom">
+    </app-atom>
+    <app-atom *ngFor="let atom of lanthanoids" [atom]="atom">
+    </app-atom>
+    <app-atom *ngFor="let atom of actinoids" [atom]="atom" class="actinoid">
+    </app-atom>
+</div>

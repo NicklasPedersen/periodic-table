@@ -1,0 +1,21 @@
+<a [routerLink]="['/more-info', atom.atomicNumber]" routingLinkActive="active">
+    <div [ngClass]="atom.groupBlock" class="atom">
+        <div class="atom-header">
+            <p class="atom-number">
+                {{ atom.atomicNumber }}
+            </p>
+            <div class="atom-shell">
+                <div *ngFor="let number of atom.electronicConfiguration.split(' ')">
+                    {{ number }}
+                </div>
+            </div>
+        </div>
+        <div class="center-child">
+            <h1 [ngClass]="atom.standardState" class="atom-letters">{{ atom.symbol }}</h1>
+        </div>
+        <div class="atom-extra-container">
+            <p class="atom-extra">{{ atom.name }}</p>
+            <p class="atom-extra">{{ atom.atomicMass }}</p>
+        </div>
+    </div>
+</a>
